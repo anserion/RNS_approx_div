@@ -1,0 +1,642 @@
+Compare methods of RNS approx divizion
+1. Prof. Chervyakov N.I. RNS approx method
+2. Prof. Parhami RNS approx method
+3. "Classic" binary divizion without RNS
+
+bin_n=24
+RNS_n=4
+precision_RNS_n=4
+p=
+       5=0 1 0 1 
+       7=0 1 1 1 
+       9=1 0 0 1 
+      11=1 0 1 1 
+
+
+pp=    3465=0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 1 
+ppi=
+     693=0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 1 0 1 0 1 
+     495=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 
+     385=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 
+     315=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 1 0 1 1 
+
+mu=
+       2=0 0 1 0 
+       3=0 0 1 1 
+       4=0 1 0 0 
+       8=1 0 0 0 
+
+basis=
+    1386=0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 1 0 1 0 1 0 
+    1485=0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 1 0 0 1 1 0 1 
+    1540=0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 0 0 
+    2520=0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 1 0 1 1 0 0 0 
+
+
+            rho=       28=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 
+             pp=     3465=0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 1 
+         pp*rho=    97020=0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 0 1 1 1 1 1 1 0 0 
+log2_up(pp*rho)=       17=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+ log2_up(RNS_n)=        2=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 
+      precision=       19=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 
+    2^precision=   524288=0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+k_approx*2^precision=
+  209716=0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 0 1 0 0 
+  224694=0 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 1 1 0 
+  233016=0 0 1 1 1 0 0 0 1 1 1 0 0 0 1 1 1 0 0 0 
+  381304=0 1 0 1 1 1 0 1 0 0 0 1 0 1 1 1 1 0 0 0 
+
+--precision calc--
+low level statistic: 
+   not=7738 and=16872 xor=15296 nand=0 or=11012 LUT_read=0
+binary device statistic: 
+   bits_copy=17 bits_ins=4 bits_cut=0 bits_set=0
+   zero_proc=41 one_proc=7 two_proc=0
+arith device statistic: 
+   shift_left=186 shift_right=70 bin_equ=198 bin_cmp=138
+   adder=112 subtractor=100 multiplier=9 divider=4
+   pow2_proc=0 log2_down=2 log2_up=2 random=0
+convertion subroutines statistic: 
+   bin_to_longint=48 longint_to_bin=2 print=11
+--precision calc--
+RNS device statistic: 
+   RNS_add=0 RNS_sub=0 RNS_mul=0 RNS_formal_div=0
+   RNS_copy=0 RNS_equ=0 RNS_random=0
+   RNS_sign(MRS)=0 RNS_sign(Parhami)=0
+   RNS_to_MRS=0 RNS_to_BSS=0 BSS_to_RNS=0
+
+
+
+--F(a) calc--
+low level statistic: 
+   not=0 and=320 xor=320 nand=0 or=160 LUT_read=0
+binary device statistic: 
+   bits_copy=4 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=5 one_proc=0 two_proc=0
+arith device statistic: 
+   shift_left=16 shift_right=0 bin_equ=0 bin_cmp=0
+   adder=8 subtractor=0 multiplier=4 divider=0
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=0 longint_to_bin=0 print=0
+--F(a) calc--
+RNS device statistic: 
+   RNS_add=0 RNS_sub=0 RNS_mul=0 RNS_formal_div=0
+   RNS_copy=0 RNS_equ=0 RNS_random=0
+   RNS_sign(MRS)=0 RNS_sign(Parhami)=0
+   RNS_to_MRS=0 RNS_to_BSS=0 BSS_to_RNS=0
+
+F(A)=   18916=0 0 0 0 0 1 0 0 1 0 0 1 1 1 1 0 0 1 0 0 
+
+--F(b) calc--
+low level statistic: 
+   not=0 and=360 xor=360 nand=0 or=180 LUT_read=0
+binary device statistic: 
+   bits_copy=4 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=5 one_proc=0 two_proc=0
+arith device statistic: 
+   shift_left=16 shift_right=0 bin_equ=0 bin_cmp=0
+   adder=9 subtractor=0 multiplier=4 divider=0
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=0 longint_to_bin=0 print=0
+--F(b) calc--
+RNS device statistic: 
+   RNS_add=0 RNS_sub=0 RNS_mul=0 RNS_formal_div=0
+   RNS_copy=0 RNS_equ=0 RNS_random=0
+   RNS_sign(MRS)=0 RNS_sign(Parhami)=0
+   RNS_to_MRS=0 RNS_to_BSS=0 BSS_to_RNS=0
+
+F(B)=    2128=0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 0 0 0 0 
+
+
+RNS divider
+low level statistic: 
+   not=348 and=1320 xor=1160 nand=0 or=740 LUT_read=8
+binary device statistic: 
+   bits_copy=22 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=16 one_proc=1 two_proc=0
+arith device statistic: 
+   shift_left=36 shift_right=4 bin_equ=8 bin_cmp=8
+   adder=20 subtractor=1 multiplier=8 divider=0
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=18 longint_to_bin=0 print=0
+RNS divider
+RNS device statistic: 
+   RNS_add=0 RNS_sub=1 RNS_mul=1 RNS_formal_div=0
+   RNS_copy=1 RNS_equ=0 RNS_random=0
+   RNS_sign(MRS)=0 RNS_sign(Parhami)=0
+   RNS_to_MRS=0 RNS_to_BSS=0 BSS_to_RNS=0
+
+A=     125=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 
+A=
+       0=0 0 0 0 
+       6=0 1 1 0 
+       8=1 0 0 0 
+       4=0 1 0 0 
+
+B=      14=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 
+B=
+       4=0 1 0 0 
+       0=0 0 0 0 
+       5=0 1 0 1 
+       3=0 0 1 1 
+
+Q=       8=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 
+Q=
+       3=0 0 1 1 
+       1=0 0 0 1 
+       8=1 0 0 0 
+       8=1 0 0 0 
+
+R=      13=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 
+R=
+       3=0 0 1 1 
+       6=0 1 1 0 
+       4=0 1 0 0 
+       2=0 0 1 0 
+
+
+Syntetic test (RNS)
+RNS divider (1000 times)
+low level statistic: 
+   not=120295 and=941380 xor=907480 nand=0 or=511640 LUT_read=8792
+binary device statistic: 
+   bits_copy=20782 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=15984 one_proc=999 two_proc=0
+arith device statistic: 
+   shift_left=32966 shift_right=998 bin_equ=6495 bin_cmp=2495
+   adder=19092 subtractor=700 multiplier=7992 divider=0
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=18584 longint_to_bin=0 print=0
+RNS divider (1000 times)
+RNS device statistic: 
+   RNS_add=200 RNS_sub=999 RNS_mul=999 RNS_formal_div=0
+   RNS_copy=500 RNS_equ=1000 RNS_random=2000
+   RNS_sign(MRS)=0 RNS_sign(Parhami)=0
+   RNS_to_MRS=0 RNS_to_BSS=0 BSS_to_RNS=0
+
+
+Parhami alpha=       4=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 
+Parhami betta=       6=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 
+ Parhami undef_edge=      59=1 1 1 0 1 1 
+Parhami center_edge=      31=0 1 1 1 1 1 
+
+Parhami divider
+low level statistic: 
+   not=432 and=1428 xor=1036 nand=0 or=640 LUT_read=230
+binary device statistic: 
+   bits_copy=260 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=17 one_proc=2 two_proc=0
+arith device statistic: 
+   shift_left=0 shift_right=0 bin_equ=8 bin_cmp=36
+   adder=66 subtractor=0 multiplier=0 divider=0
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=476 longint_to_bin=0 print=0
+Parhami divider
+RNS device statistic: 
+   RNS_add=22 RNS_sub=25 RNS_mul=5 RNS_formal_div=0
+   RNS_copy=12 RNS_equ=2 RNS_random=0
+   RNS_sign(MRS)=1 RNS_sign(Parhami)=14
+   RNS_to_MRS=1 RNS_to_BSS=0 BSS_to_RNS=0
+
+A=     125=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 
+A=
+       0=0 0 0 0 
+       6=0 1 1 0 
+       8=1 0 0 0 
+       4=0 1 0 0 
+
+B=      14=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 
+B=
+       4=0 1 0 0 
+       0=0 0 0 0 
+       5=0 1 0 1 
+       3=0 0 1 1 
+
+Q=       8=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 
+Q=
+       3=0 0 1 1 
+       1=0 0 0 1 
+       8=1 0 0 0 
+       8=1 0 0 0 
+
+R=      13=0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 
+R=
+       3=0 0 1 1 
+       6=0 1 1 0 
+       4=0 1 0 0 
+       2=0 0 1 0 
+
+
+Syntetic test (Parhami)
+Parhami divider (1000 times)
+low level statistic: 
+   not=198964 and=648774 xor=476210 nand=0 or=297086 LUT_read=90671
+binary device statistic: 
+   bits_copy=100856 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=9935 one_proc=2000 two_proc=0
+arith device statistic: 
+   shift_left=0 shift_right=0 bin_equ=5280 bin_cmp=16247
+   adder=29854 subtractor=0 multiplier=0 divider=0
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=193292 longint_to_bin=0 print=0
+Parhami divider (1000 times)
+RNS device statistic: 
+   RNS_add=7285 RNS_sub=11689 RNS_mul=1640 RNS_formal_div=0
+   RNS_copy=4440 RNS_equ=1320 RNS_random=2000
+   RNS_sign(MRS)=160 RNS_sign(Parhami)=6935
+   RNS_to_MRS=160 RNS_to_BSS=0 BSS_to_RNS=0
+
+
+BSS divider
+low level statistic: 
+   not=264 and=504 xor=456 nand=0 or=348 LUT_read=0
+binary device statistic: 
+   bits_copy=3 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=6 one_proc=1 two_proc=0
+arith device statistic: 
+   shift_left=16 shift_right=4 bin_equ=12 bin_cmp=8
+   adder=4 subtractor=5 multiplier=1 divider=1
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=1 longint_to_bin=0 print=0
+BSS divider
+RNS device statistic: 
+   RNS_add=0 RNS_sub=0 RNS_mul=0 RNS_formal_div=0
+   RNS_copy=0 RNS_equ=0 RNS_random=0
+   RNS_sign(MRS)=0 RNS_sign(Parhami)=0
+   RNS_to_MRS=0 RNS_to_BSS=0 BSS_to_RNS=0
+
+A=     125=0 0 0 0 0 1 1 1 1 1 0 1 
+B=      14=0 0 0 0 0 0 0 0 1 1 1 0 
+Q=       8=0 0 0 0 0 0 0 0 1 0 0 0 
+R=      13=0 0 0 0 0 0 0 0 1 1 0 1 
+
+Syntetic test (BSS)
+BSS divider (1000 times)
+low level statistic: 
+   not=90907 and=173556 xor=155520 nand=0 or=114300 LUT_read=0
+binary device statistic: 
+   bits_copy=2997 bits_ins=0 bits_cut=0 bits_set=0
+   zero_proc=4560 one_proc=521 two_proc=0
+arith device statistic: 
+   shift_left=13015 shift_right=1027 bin_equ=3559 bin_cmp=2531
+   adder=1218 subtractor=2217 multiplier=999 divider=999
+   pow2_proc=0 log2_down=0 log2_up=0 random=0
+convertion subroutines statistic: 
+   bin_to_longint=712 longint_to_bin=0 print=0
+BSS divider (1000 times)
+RNS device statistic: 
+   RNS_add=0 RNS_sub=0 RNS_mul=0 RNS_formal_div=0
+   RNS_copy=0 RNS_equ=0 RNS_random=0
+   RNS_sign(MRS)=0 RNS_sign(Parhami)=0
+   RNS_to_MRS=0 RNS_to_BSS=0 BSS_to_RNS=0
+
+
+====================================================================================
+|   bin compare table|                   RNS divider|               Parhami divider|
+------------------------------------------------------------------------------------
+| bin_to_longint proc|                            18|                           476|
+| longint_to_bin proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|      copy bits proc|                            22|                           260|
+|    insert bits proc|                             0|                             0|
+|       cut bits proc|                             0|                             0|
+|       set bits proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|           zero_proc|                            16|                            17|
+|            one_proc|                             1|                             2|
+|            two_proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|          shift left|                            36|                             0|
+|         shift right|                             4|                             0|
+|                 equ|                             8|                             8|
+|                 cmp|                             8|                            36|
+------------------------------------------------------------------------------------
+|           pow2 proc|                             0|                             0|
+|      log2 down proc|                             0|                             0|
+|        log2 up proc|                             0|                             0|
+|         random proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|               adder|                            20|                            66|
+|          subtractor|                             1|                             0|
+|          multiplier|                             8|                             0|
+|             divider|                             0|                             0|
+------------------------------------------------------------------------------------
+|            LUT read|                             8|                           230|
+------------------------------------------------------------------------------------
+|                 not|                           348|                           432|
+|                 and|                          1320|                          1428|
+|                 xor|                          1160|                          1036|
+|                nand|                             0|                             0|
+|                  or|                           740|                           640|
+------------------------------------------------------------------------------------
+|       gates summary|                          3568|                          3536|
+====================================================================================
+====================================================================================
+|   RNS compare table|                   RNS divider|               Parhami divider|
+------------------------------------------------------------------------------------
+|             RNS_add|                             0|                            22|
+|             RNS_sub|                             1|                            25|
+|             RNS_mul|                             1|                             5|
+|      RNS_formal_div|                             0|                             0|
+|            RNS_copy|                             1|                            12|
+|             RNS_equ|                             0|                             2|
+|          RNS_random|                             0|                             0|
+|       RNS_sign(MRS)|                             0|                             1|
+|   RNS_sign(Parhami)|                             0|                            14|
+|          RNS_to_MRS|                             0|                             1|
+|          RNS_to_BSS|                             0|                             0|
+|          BSS_to_RNS|                             0|                             0|
+====================================================================================
+
+====================================================================================
+|   bin compare table|                   RNS divider|                   BSS divider|
+------------------------------------------------------------------------------------
+| bin_to_longint proc|                            18|                             1|
+| longint_to_bin proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|      copy bits proc|                            22|                             3|
+|    insert bits proc|                             0|                             0|
+|       cut bits proc|                             0|                             0|
+|       set bits proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|           zero_proc|                            16|                             6|
+|            one_proc|                             1|                             1|
+|            two_proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|          shift left|                            36|                            16|
+|         shift right|                             4|                             4|
+|                 equ|                             8|                            12|
+|                 cmp|                             8|                             8|
+------------------------------------------------------------------------------------
+|           pow2 proc|                             0|                             0|
+|      log2 down proc|                             0|                             0|
+|        log2 up proc|                             0|                             0|
+|         random proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|               adder|                            20|                             4|
+|          subtractor|                             1|                             5|
+|          multiplier|                             8|                             1|
+|             divider|                             0|                             1|
+------------------------------------------------------------------------------------
+|            LUT read|                             8|                             0|
+------------------------------------------------------------------------------------
+|                 not|                           348|                           264|
+|                 and|                          1320|                           504|
+|                 xor|                          1160|                           456|
+|                nand|                             0|                             0|
+|                  or|                           740|                           348|
+------------------------------------------------------------------------------------
+|       gates summary|                          3568|                          1572|
+====================================================================================
+====================================================================================
+|   RNS compare table|                   RNS divider|                   BSS divider|
+------------------------------------------------------------------------------------
+|             RNS_add|                             0|                             0|
+|             RNS_sub|                             1|                             0|
+|             RNS_mul|                             1|                             0|
+|      RNS_formal_div|                             0|                             0|
+|            RNS_copy|                             1|                             0|
+|             RNS_equ|                             0|                             0|
+|          RNS_random|                             0|                             0|
+|       RNS_sign(MRS)|                             0|                             0|
+|   RNS_sign(Parhami)|                             0|                             0|
+|          RNS_to_MRS|                             0|                             0|
+|          RNS_to_BSS|                             0|                             0|
+|          BSS_to_RNS|                             0|                             0|
+====================================================================================
+
+====================================================================================
+|   bin compare table|               Parhami divider|                   BSS divider|
+------------------------------------------------------------------------------------
+| bin_to_longint proc|                           476|                             1|
+| longint_to_bin proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|      copy bits proc|                           260|                             3|
+|    insert bits proc|                             0|                             0|
+|       cut bits proc|                             0|                             0|
+|       set bits proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|           zero_proc|                            17|                             6|
+|            one_proc|                             2|                             1|
+|            two_proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|          shift left|                             0|                            16|
+|         shift right|                             0|                             4|
+|                 equ|                             8|                            12|
+|                 cmp|                            36|                             8|
+------------------------------------------------------------------------------------
+|           pow2 proc|                             0|                             0|
+|      log2 down proc|                             0|                             0|
+|        log2 up proc|                             0|                             0|
+|         random proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|               adder|                            66|                             4|
+|          subtractor|                             0|                             5|
+|          multiplier|                             0|                             1|
+|             divider|                             0|                             1|
+------------------------------------------------------------------------------------
+|            LUT read|                           230|                             0|
+------------------------------------------------------------------------------------
+|                 not|                           432|                           264|
+|                 and|                          1428|                           504|
+|                 xor|                          1036|                           456|
+|                nand|                             0|                             0|
+|                  or|                           640|                           348|
+------------------------------------------------------------------------------------
+|       gates summary|                          3536|                          1572|
+====================================================================================
+====================================================================================
+|   RNS compare table|               Parhami divider|                   BSS divider|
+------------------------------------------------------------------------------------
+|             RNS_add|                            22|                             0|
+|             RNS_sub|                            25|                             0|
+|             RNS_mul|                             5|                             0|
+|      RNS_formal_div|                             0|                             0|
+|            RNS_copy|                            12|                             0|
+|             RNS_equ|                             2|                             0|
+|          RNS_random|                             0|                             0|
+|       RNS_sign(MRS)|                             1|                             0|
+|   RNS_sign(Parhami)|                            14|                             0|
+|          RNS_to_MRS|                             1|                             0|
+|          RNS_to_BSS|                             0|                             0|
+|          BSS_to_RNS|                             0|                             0|
+====================================================================================
+
+
+====================================================================================
+|   bin compare table|      RNS divider (1000 times)|  Parhami divider (1000 times)|
+------------------------------------------------------------------------------------
+| bin_to_longint proc|                         18584|                        193292|
+| longint_to_bin proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|      copy bits proc|                         20782|                        100856|
+|    insert bits proc|                             0|                             0|
+|       cut bits proc|                             0|                             0|
+|       set bits proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|           zero_proc|                         15984|                          9935|
+|            one_proc|                           999|                          2000|
+|            two_proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|          shift left|                         32966|                             0|
+|         shift right|                           998|                             0|
+|                 equ|                          6495|                          5280|
+|                 cmp|                          2495|                         16247|
+------------------------------------------------------------------------------------
+|           pow2 proc|                             0|                             0|
+|      log2 down proc|                             0|                             0|
+|        log2 up proc|                             0|                             0|
+|         random proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|               adder|                         19092|                         29854|
+|          subtractor|                           700|                             0|
+|          multiplier|                          7992|                             0|
+|             divider|                             0|                             0|
+------------------------------------------------------------------------------------
+|            LUT read|                          8792|                         90671|
+------------------------------------------------------------------------------------
+|                 not|                        120295|                        198964|
+|                 and|                        941380|                        648774|
+|                 xor|                        907480|                        476210|
+|                nand|                             0|                             0|
+|                  or|                        511640|                        297086|
+------------------------------------------------------------------------------------
+|       gates summary|                       2480795|                       1621034|
+====================================================================================
+====================================================================================
+|   RNS compare table|      RNS divider (1000 times)|  Parhami divider (1000 times)|
+------------------------------------------------------------------------------------
+|             RNS_add|                           200|                          7285|
+|             RNS_sub|                           999|                         11689|
+|             RNS_mul|                           999|                          1640|
+|      RNS_formal_div|                             0|                             0|
+|            RNS_copy|                           500|                          4440|
+|             RNS_equ|                          1000|                          1320|
+|          RNS_random|                          2000|                          2000|
+|       RNS_sign(MRS)|                             0|                           160|
+|   RNS_sign(Parhami)|                             0|                          6935|
+|          RNS_to_MRS|                             0|                           160|
+|          RNS_to_BSS|                             0|                             0|
+|          BSS_to_RNS|                             0|                             0|
+====================================================================================
+
+====================================================================================
+|   bin compare table|      RNS divider (1000 times)|      BSS divider (1000 times)|
+------------------------------------------------------------------------------------
+| bin_to_longint proc|                         18584|                           712|
+| longint_to_bin proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|      copy bits proc|                         20782|                          2997|
+|    insert bits proc|                             0|                             0|
+|       cut bits proc|                             0|                             0|
+|       set bits proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|           zero_proc|                         15984|                          4560|
+|            one_proc|                           999|                           521|
+|            two_proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|          shift left|                         32966|                         13015|
+|         shift right|                           998|                          1027|
+|                 equ|                          6495|                          3559|
+|                 cmp|                          2495|                          2531|
+------------------------------------------------------------------------------------
+|           pow2 proc|                             0|                             0|
+|      log2 down proc|                             0|                             0|
+|        log2 up proc|                             0|                             0|
+|         random proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|               adder|                         19092|                          1218|
+|          subtractor|                           700|                          2217|
+|          multiplier|                          7992|                           999|
+|             divider|                             0|                           999|
+------------------------------------------------------------------------------------
+|            LUT read|                          8792|                             0|
+------------------------------------------------------------------------------------
+|                 not|                        120295|                         90907|
+|                 and|                        941380|                        173556|
+|                 xor|                        907480|                        155520|
+|                nand|                             0|                             0|
+|                  or|                        511640|                        114300|
+------------------------------------------------------------------------------------
+|       gates summary|                       2480795|                        534283|
+====================================================================================
+====================================================================================
+|   RNS compare table|      RNS divider (1000 times)|      BSS divider (1000 times)|
+------------------------------------------------------------------------------------
+|             RNS_add|                           200|                             0|
+|             RNS_sub|                           999|                             0|
+|             RNS_mul|                           999|                             0|
+|      RNS_formal_div|                             0|                             0|
+|            RNS_copy|                           500|                             0|
+|             RNS_equ|                          1000|                             0|
+|          RNS_random|                          2000|                             0|
+|       RNS_sign(MRS)|                             0|                             0|
+|   RNS_sign(Parhami)|                             0|                             0|
+|          RNS_to_MRS|                             0|                             0|
+|          RNS_to_BSS|                             0|                             0|
+|          BSS_to_RNS|                             0|                             0|
+====================================================================================
+
+====================================================================================
+|   bin compare table|  Parhami divider (1000 times)|      BSS divider (1000 times)|
+------------------------------------------------------------------------------------
+| bin_to_longint proc|                        193292|                           712|
+| longint_to_bin proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|      copy bits proc|                        100856|                          2997|
+|    insert bits proc|                             0|                             0|
+|       cut bits proc|                             0|                             0|
+|       set bits proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|           zero_proc|                          9935|                          4560|
+|            one_proc|                          2000|                           521|
+|            two_proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|          shift left|                             0|                         13015|
+|         shift right|                             0|                          1027|
+|                 equ|                          5280|                          3559|
+|                 cmp|                         16247|                          2531|
+------------------------------------------------------------------------------------
+|           pow2 proc|                             0|                             0|
+|      log2 down proc|                             0|                             0|
+|        log2 up proc|                             0|                             0|
+|         random proc|                             0|                             0|
+------------------------------------------------------------------------------------
+|               adder|                         29854|                          1218|
+|          subtractor|                             0|                          2217|
+|          multiplier|                             0|                           999|
+|             divider|                             0|                           999|
+------------------------------------------------------------------------------------
+|            LUT read|                         90671|                             0|
+------------------------------------------------------------------------------------
+|                 not|                        198964|                         90907|
+|                 and|                        648774|                        173556|
+|                 xor|                        476210|                        155520|
+|                nand|                             0|                             0|
+|                  or|                        297086|                        114300|
+------------------------------------------------------------------------------------
+|       gates summary|                       1621034|                        534283|
+====================================================================================
+====================================================================================
+|   RNS compare table|  Parhami divider (1000 times)|      BSS divider (1000 times)|
+------------------------------------------------------------------------------------
+|             RNS_add|                          7285|                             0|
+|             RNS_sub|                         11689|                             0|
+|             RNS_mul|                          1640|                             0|
+|      RNS_formal_div|                             0|                             0|
+|            RNS_copy|                          4440|                             0|
+|             RNS_equ|                          1320|                             0|
+|          RNS_random|                          2000|                             0|
+|       RNS_sign(MRS)|                           160|                             0|
+|   RNS_sign(Parhami)|                          6935|                             0|
+|          RNS_to_MRS|                           160|                             0|
+|          RNS_to_BSS|                             0|                             0|
+|          BSS_to_RNS|                             0|                             0|
+====================================================================================
